@@ -2,19 +2,11 @@ import React, { Component } from 'react';
 import Form from './components/Form/Form';
 import ContactList from 'components/ContactList/ContactList';
 import Filter from './components/Filter/Filter';
+import warningMessage from './utils/warningMessage';
 
 import shortid from 'shortid';
 
-import Notiflix from 'notiflix';
-Notiflix.Notify.init({
-  width: '280px',
-  position: 'center-top',
-  distance: '10px',
-  opacity: 1,
-});
-
-// import css from './App.module.css';
-
+import css from './App.module.css';
 class App extends Component {
   state = {
     contacts: [
@@ -38,7 +30,7 @@ class App extends Component {
     const normalizedNewContactName = name.toLocaleLowerCase();
 
     if (names.indexOf(normalizedNewContactName) >= 0) {
-      Notiflix.Notify.warning(name + ' is already in contacts');
+      warningMessage(name);
       return;
     }
 
@@ -65,17 +57,17 @@ class App extends Component {
     );
 
     return (
-      <>
-        <h1>Phonebook</h1>
+      <div className={css.phonebook}>
+        <h1 className={css.phonebook__title}> Phonebook</h1>
         <Form onSubmit={this.addContact} />
 
-        <h2>Contacts</h2>
+        <h2 className={css.phonebook__subtitle}>Contacts</h2>
         <Filter value={filter} onChange={this.cangeFilter} />
         <ContactList
           contacts={filteredContactList}
           onDeleteContact={this.deleteContact}
         />
-      </>
+      </div>
     );
   }
 }

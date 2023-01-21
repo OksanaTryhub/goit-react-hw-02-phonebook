@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
-// import shortid from 'shortid';
-// import css from './Form.module.css';
+import css from './Form.module.css';
 
 class Form extends Component {
   state = {
@@ -16,7 +15,7 @@ class Form extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    // console.log(this.state);
+
     this.props.onSubmit(this.state);
     this.resetForm();
   };
@@ -27,10 +26,11 @@ class Form extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
+      <form className={css.contactForm} onSubmit={this.handleSubmit}>
+        <label className={css.contactForm__label}>
           Name
           <input
+            className={css.contactForm__input}
             type="text"
             name="name"
             autoComplete="off"
@@ -41,9 +41,10 @@ class Form extends Component {
             onChange={this.handleInputCange}
           />
         </label>
-        <label>
+        <label className={css.contactForm__label}>
           Number
           <input
+            className={css.contactForm__input}
             type="tel"
             name="number"
             autoComplete="off"
@@ -54,7 +55,9 @@ class Form extends Component {
             onChange={this.handleInputCange}
           />
         </label>
-        <button type="submit"> Add contact </button>
+        <button type="submit" className={css.contactForm__btn}>
+          Add contact
+        </button>
       </form>
     );
   }
