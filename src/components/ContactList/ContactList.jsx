@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import SvgIcon from '../SvgIcon/SvgIcon';
 import css from './ContactList.module.css';
-import Form from './../Form/Form';
 
 const ContactList = ({ contacts, onDeleteContact }) => (
   <ul className={css.contactList}>
