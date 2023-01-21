@@ -1,5 +1,7 @@
+import PropTypes from 'prop-types';
 import SvgIcon from '../SvgIcon/SvgIcon';
 import css from './ContactList.module.css';
+import Form from './../Form/Form';
 
 const ContactList = ({ contacts, onDeleteContact }) => (
   <ul className={css.contactList}>
@@ -19,3 +21,18 @@ const ContactList = ({ contacts, onDeleteContact }) => (
 );
 
 export default ContactList;
+
+ContactList.defaultProps = {
+  contacts: [],
+};
+
+ContactList.propTypes = {
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
+    })
+  ),
+  onDeleteContact: PropTypes.func.isRequired,
+};
